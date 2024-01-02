@@ -7,9 +7,7 @@ from cv2 import imwrite,imread
 def save_result(image,image_path):
     result = drawbox(image)
     output_path = os.path.join("outputs", os.path.basename(image_path))
-    print(output_path)
     imwrite(output_path, result)
-    print("image saved")
 
 def process_images(images_directory):
     # Ensure the output directory exists
