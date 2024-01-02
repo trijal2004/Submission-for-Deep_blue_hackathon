@@ -1,4 +1,3 @@
-from cv2 import imwrite,imread
 import cv2
 import numpy as np
 import matplotlib.pyplot as plt
@@ -17,6 +16,9 @@ def show(image,image_name = "sus.jpg",gray = False,save = False):
     plt.show()
 
 def final_bb(possible_contours,image):
+    if len(possible_contours) == 0  :
+        return image
+    
     # Find the minimum and maximum x and y coordinates of the boxes
     min_x = min([d['x'] for d in possible_contours])
     max_x = max([d['x'] + d['w'] for d in possible_contours])
@@ -39,12 +41,10 @@ def maximize_contrast(gray):
 
     return gray
 
-def drawbox(image_path):
+def drawbox(img_ori):
     """
     creates bouding box around the image and returns it
     """
-    img_ori = imread(image_path)
-
     height, width, channel = img_ori.shape
 
 
@@ -113,15 +113,15 @@ def drawbox(image_path):
             possible_contours.append(d)
 
     # visualize possible contours
-    temp_result = np.zeros((height, width, channel), dtype=np.uint8)
+    temp_result = img_ori.copy()
 
     for d in possible_contours:
     #     cv2.drawContours(temp_result, d['contour'], -1, (255, 255, 255))
         cv2.rectangle(temp_result, pt1=(d['x'], d['y']), pt2=(d['x']+d['w'], d['y']+d['h']), color=(255, 255, 255), thickness=2)
 
-    show(temp_result)
+    # show(temp_result)
     # Combined bounding box
     copy = final_bb(possible_contours,img_ori)
-    show(image = copy, image_name = "image_with_bb.jpg",save = True)
+    # show(image = copy, image_name = "image_with_bb.jpg",save = True)
 
     return copy
