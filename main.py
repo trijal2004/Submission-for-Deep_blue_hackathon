@@ -1,5 +1,6 @@
 import os
 import argparse
+from enhance import enhance_image
 from boundingbox import drawbox
 from cv2 import imwrite,imread
 
@@ -20,7 +21,7 @@ def process_images(images_directory):
         if filename.endswith(".jpg") or filename.endswith(".png"):
             image_path = os.path.join(images_directory, filename)
             image = imread(image_path)
-            # image = enhance_image(image) #enhances the image, saves it and then returns the enhanced image
+            image = enhance_image(image) #enhances the image, saves it and then returns the enhanced image
             save_result(image,image_path)
 
 if __name__ == "__main__":
