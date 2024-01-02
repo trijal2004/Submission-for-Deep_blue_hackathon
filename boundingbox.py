@@ -41,14 +41,14 @@ def maximize_contrast(gray):
 
     return gray
 
-def drawbox(img_ori):
+def drawbox(enhanced_image,image_ori):
     """
     creates bouding box around the image and returns it
     """
-    height, width, channel = img_ori.shape
+    height, width, channel = image_ori.shape
 
 
-    gray = cv2.cvtColor(img_ori, cv2.COLOR_BGR2GRAY)
+    gray = cv2.cvtColor(enhanced_image, cv2.COLOR_BGR2GRAY)
 
     #maximizing contrast 
     gray = maximize_contrast(gray)
@@ -113,7 +113,7 @@ def drawbox(img_ori):
             possible_contours.append(d)
 
     # visualize possible contours
-    temp_result = img_ori.copy()
+    temp_result = image_ori.copy()
 
     for d in possible_contours:
     #     cv2.drawContours(temp_result, d['contour'], -1, (255, 255, 255))
@@ -121,7 +121,7 @@ def drawbox(img_ori):
 
     # show(temp_result)
     # Combined bounding box
-    copy = final_bb(possible_contours,img_ori)
+    copy = final_bb(possible_contours,image_ori)
     # show(image = copy, image_name = "image_with_bb.jpg",save = True)
 
     return copy
