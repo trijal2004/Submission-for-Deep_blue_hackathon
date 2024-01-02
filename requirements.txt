@@ -1,2 +1,9 @@
 numpy 
-pandas
+opencv-python
+pillow
+matplotlib
+pytesseract
+argparse
+scikit-image
+scipy
+natsort
