@@ -136,9 +136,6 @@ def ret(enh_img):
    retinex = np.clip(retinex * 255.0, 0, 255).astype(np.uint8)
    return(retinex)
 
-# print(len(train_images))
-# print(len(test_images))
-# print(len(valid_images))
 
 # new_train=[]
 
@@ -168,11 +165,11 @@ def global_stretching(img_L,height, width):
     length = height * width
     R_rray = (np.copy(img_L)).flatten()
     R_rray.sort()
-    print('R_rray',R_rray)
+    # print('R_rray',R_rray)
     I_min = int(R_rray[int(length / 100)])
     I_max = int(R_rray[-int(length / 100)])
-    print('I_min',I_min)
-    print('I_max',I_max)
+    # print('I_min',I_min)
+    # print('I_max',I_max)
     array_Global_histogram_stretching_L = np.zeros((height, width))
     for i in range(0, height):
         for j in range(0, width):
@@ -251,7 +248,7 @@ def stretchrange(r_array, height, width):
     length = height * width
     R_rray = r_array.flatten()
     R_rray.sort()
-    print('R_rray', R_rray)
+    # print('R_rray', R_rray)
     mode = stats.mode(R_rray).mode[0]
     mode_index_before = list(R_rray).index(mode)
     # count = stats.mode(R_rray).count[0]
@@ -259,9 +256,9 @@ def stretchrange(r_array, height, width):
     SR_min = R_rray[int(mode_index_before * 0.005)]
     SR_max = R_rray[int(-(length - mode_index_before) * 0.005)]
 
-    print('mode',mode)
-    print('SR_min',SR_min)
-    print('SR_max',SR_max)
+    # print('mode',mode)
+    # print('SR_min',SR_min)
+    # print('SR_max',SR_max)
 
     return SR_min, SR_max, mode
 
@@ -337,7 +334,7 @@ def stretchrange(r_array, height, width):
     length = height * width
     R_rray = r_array.flatten()
     R_rray.sort()
-    print('R_rray', R_rray)
+    # print('R_rray', R_rray)
     mode = stats.mode(R_rray).mode[0]
     mode_index_before = list(R_rray).index(mode)
     # count = stats.mode(R_rray).count[0]
@@ -351,9 +348,9 @@ def stretchrange(r_array, height, width):
 
     SR_max = R_rray[int(-(length - mode_index_before) * 0.005)]
 
-    print('mode', mode)
-    print('DR_min', DR_min)
-    print('SR_max', SR_max)
+    # print('mode', mode)
+    # print('DR_min', DR_min)
+    # print('SR_max', SR_max)
 
     return DR_min, SR_max, mode
 
