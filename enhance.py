@@ -9,8 +9,12 @@ def enhance_image(img):
     enh_img=col_enh(img)
     ret_img=ret(enh_img)
     rghs_img=rghs(ret_img)
+    b, g,r=cv2.split(rghs_img)
+    enh_r = cv2.addWeighted(r, 0.50, np.zeros_like(r), 0, 0)
+    final_img= cv2.merge([b,g,enh_r])
+    
     #make rgb from bgr
-    rghs_img_8u = cv2.convertScaleAbs(rghs_img)  # Convert to 8-bit image
+    rghs_img_8u = cv2.convertScaleAbs(final_img)  # Convert to 8-bit image
 
     # Now, you can safely perform the color conversion
     img_bgr = cv2.cvtColor(rghs_img_8u, cv2.COLOR_BGR2RGB)
