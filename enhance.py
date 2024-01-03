@@ -51,6 +51,17 @@ def enhance_image(img):
 
 
     height, width = inverted_equ.shape
+    for y in range(height):
+      for x in range(width):
+        #cv2.circle(edge2,(x,y),10,255,-1)
+        neighborhood_size = 70
+        half_size = neighborhood_size // 2
+        neighborhood_x = slice(max(0, x - half_size), min(inverted_equ.shape[1], x + half_size + 1))
+        neighborhood_y = slice(max(0, y - round(half_size/4)), min(inverted_equ.shape[0], round(y + half_size/4 + 1)))
+        # Set the values in the neighborhood to 0
+        if(inverted_equ[neighborhood_y, neighborhood_x]).sum() >= neighborhood_size*neighborhood_size/4 *200 :
+          inverted_equ[neighborhood_y, neighborhood_x]=0
+    #plt.imshow(inverted_equ)
 
     border_size = 3
 
