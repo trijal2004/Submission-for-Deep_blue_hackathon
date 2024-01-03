@@ -1,7 +1,7 @@
 import cv2
 import matplotlib.pyplot as plt
 import numpy as np
-from RGHS.main import rghs
+from RGHS_runner import rghs
 from contrast_n_retinex import ret,col_enh
 
 #create image path
@@ -10,8 +10,12 @@ def enhance_image(img):
     ret_img=ret(enh_img)
     rghs_img=rghs(ret_img)
     #make rgb from bgr
-    img_bgr=cv2.cvtColor(rghs_img,cv2.COLOR_BGR2RGB)
-    template=cv2.imread('/content/pool line.png')
+    rghs_img_8u = cv2.convertScaleAbs(rghs_img)  # Convert to 8-bit image
+
+    # Now, you can safely perform the color conversion
+    img_bgr = cv2.cvtColor(rghs_img_8u, cv2.COLOR_BGR2RGB)
+    # img_bgr=cv2.cvtColor(rghs_img,cv2.COLOR_BGR2RGB)
+    template=cv2.imread('pool_line.png')
     template=cv2.cvtColor(template, cv2.COLOR_BGR2RGB)
 
     # Store width and height of template in w and h

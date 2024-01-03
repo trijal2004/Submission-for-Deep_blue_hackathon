@@ -47,8 +47,9 @@ def drawbox(enhanced_image,image_ori):
     """
     height, width, channel = image_ori.shape
 
-
-    gray = cv2.cvtColor(enhanced_image, cv2.COLOR_BGR2GRAY)
+    print(enhanced_image.shape)
+    # gray = cv2.cvtColor(enhanced_image, cv2.COLOR_BGR2GRAY)
+    gray = enhanced_image
 
     #maximizing contrast 
     gray = maximize_contrast(gray)
