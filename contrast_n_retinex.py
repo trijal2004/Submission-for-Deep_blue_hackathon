@@ -9,84 +9,82 @@ Original file is located at
 
 import cv2
 import os
-from google.colab.patches import cv2_imshow
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
-from google.colab import files
 
-!pip install roboflow
+# !pip install roboflow
 
-from roboflow import Roboflow
-rf = Roboflow(api_key="wbs3ef01W1OQTdLhbY9o")
-project = rf.workspace("auv-hackathon").project("underwater-object-detection-s8xhb")
-dataset = project.version(1).download("coco")
+# from roboflow import Roboflow
+# rf = Roboflow(api_key="wbs3ef01W1OQTdLhbY9o")
+# project = rf.workspace("auv-hackathon").project("underwater-object-detection-s8xhb")
+# dataset = project.version(1).download("coco")
 
-#This is the code to download the dataset
+# #This is the code to download the dataset
 
-"""# New Section"""
+# """# New Section"""
 
-#im_list=[]
-#def im_read(n):
- # for i in range(n):
-  #  print('Upload File:')
-   # upl_file=files.upload()
-    #for filename, content in upl_file.items():
-     # nparr = np.frombuffer(content, np.uint8)
-      #img = cv2.imdecode(nparr, cv2.IMREAD_COLOR)
-      #if img is not None:
-       #     im_list.append(img)
-      #else:
-       #     print(f"Error reading image: {filename}")
+# #im_list=[]
+# #def im_read(n):
+#  # for i in range(n):
+#   #  print('Upload File:')
+#    # upl_file=files.upload()
+#     #for filename, content in upl_file.items():
+#      # nparr = np.frombuffer(content, np.uint8)
+#       #img = cv2.imdecode(nparr, cv2.IMREAD_COLOR)
+#       #if img is not None:
+#        #     im_list.append(img)
+#       #else:
+#        #     print(f"Error reading image: {filename}")
 
-#m=int(input('Enter no. of images'))
-#im_read(m)
+# #m=int(input('Enter no. of images'))
+# #im_read(m)
 
-train_path = '/content/Underwater-object-detection-1/train/'
-test_path='/content/Underwater-object-detection-1/test/'
-valid_path='/content/Underwater-object-detection-1/valid/'
-train_cont = os.listdir('/content/Underwater-object-detection-1/train/')
-test_cont=os.listdir('/content/Underwater-object-detection-1/test/')
-valid_cont=os.listdir('/content/Underwater-object-detection-1/valid/')
-train_str=[]
-test_str=[]
-valid_str=[]
+# train_path = '/content/Underwater-object-detection-1/train/'
+# test_path='/content/Underwater-object-detection-1/test/'
+# valid_path='/content/Underwater-object-detection-1/valid/'
+# train_cont = os.listdir('/content/Underwater-object-detection-1/train/')
+# test_cont=os.listdir('/content/Underwater-object-detection-1/test/')
+# valid_cont=os.listdir('/content/Underwater-object-detection-1/valid/')
+# train_str=[]
+# test_str=[]
+# valid_str=[]
 
-for item in train_cont:
-  if item != "_annotations.coco.json":
-    train_str.append(train_path+item)
+# for item in train_cont:
+#   if item != "_annotations.coco.json":
+#     train_str.append(train_path+item)
 
-for item in test_cont:
-  if item != "_annotations.coco.json":
-    test_str.append(test_path+item)
+# for item in test_cont:
+#   if item != "_annotations.coco.json":
+#     test_str.append(test_path+item)
 
-for item in valid_cont:
-  if item != "_annotations.coco.json":
-    valid_str.append(valid_path+item)
+# for item in valid_cont:
+#   if item != "_annotations.coco.json":
+#     valid_str.append(valid_path+item)
 
-train_images=[]
-for item in train_str:
-   img = (cv2.imread(item,cv2.IMREAD_COLOR)).astype(np.uint8)
-   img=cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
-   train_images.append(img)
-   plt.imshow(img)
-   plt.show()
+# train_images=[]
+# for item in train_str:
+#    img = (cv2.imread(item,cv2.IMREAD_COLOR)).astype(np.uint8)
+#    img=cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+#    train_images.append(img)
+#    plt.imshow(img)
+#    plt.show()
 
-test_images=[]
-for item in test_str:
-   img = (cv2.imread(item,cv2.IMREAD_COLOR)).astype(np.uint8)
-   img=cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
-   test_images.append(img)
-   plt.imshow(img)
-   plt.show()
+# test_images=[]
+# for item in test_str:
+#    img = (cv2.imread(item,cv2.IMREAD_COLOR)).astype(np.uint8)
+#    img=cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+#    test_images.append(img)
+#    plt.imshow(img)
+#    plt.show()
 
-valid_images=[]
-for item in valid_str:
-   img = (cv2.imread(item,cv2.IMREAD_COLOR)).astype(np.uint8)
-   img=cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
-   valid_images.append(img)
-   plt.imshow(img)
-   plt.show()
+# valid_images=[]
+# for item in valid_str:
+#    img = (cv2.imread(item,cv2.IMREAD_COLOR)).astype(np.uint8)
+#    img=cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+#    valid_images.append(img)
+#    plt.imshow(img)
+#    plt.show()
 
 #Unsharp masking
  #Note that the first image has more contrast but the 2nd is sharper (as demonstrated by lab cvt later)
@@ -142,27 +140,27 @@ def ret(enh_img):
 # print(len(test_images))
 # print(len(valid_images))
 
-new_train=[]
+# new_train=[]
 
-for img in train_images:
-   enh_img=col_enh(img)
-   new_train.append(ret(enh_img))
+# for img in train_images:
+#    enh_img=col_enh(img)
+#    new_train.append(ret(enh_img))
 
-new_test=[]
+# new_test=[]
 
-for img in test_images:
-   enh_img=col_enh(img)
-   new_test.append(ret(enh_img))
+# for img in test_images:
+#    enh_img=col_enh(img)
+#    new_test.append(ret(enh_img))
 
-new_valid=[]
+# new_valid=[]
 
-for img in valid_images:
-   enh_img=col_enh(img)
-   new_valid.append(ret(enh_img))
+# for img in valid_images:
+#    enh_img=col_enh(img)
+#    new_valid.append(ret(enh_img))
 
-for img in new_test:
-    plt.imshow(img)
-    plt.show()
+# for img in new_test:
+#     plt.imshow(img)
+#     plt.show()
 
 ##RGHS stuff begins
 
@@ -235,16 +233,16 @@ def  LABStretching(sceneRadiance):
 
     return img_rgb
 
-    sceneRadiance = np.clip(sceneRadiance, 0, 255)
-    sceneRadiance = np.uint8(sceneRadiance)
-    height = len(sceneRadiance)
-    width = len(sceneRadiance[0])
-    img_hsv = rgb2hsv(sceneRadiance)
-    img_hsv[:, :, 1] = global_stretching(img_hsv[:, :, 1], height, width)
-    img_hsv[:, :, 2] = global_stretching(img_hsv[:, :, 2], height, width)
-    img_rgb = hsv2rgb(img_hsv) * 255
+    # sceneRadiance = np.clip(sceneRadiance, 0, 255)
+    # sceneRadiance = np.uint8(sceneRadiance)
+    # height = len(sceneRadiance)
+    # width = len(sceneRadiance[0])
+    # img_hsv = rgb2hsv(sceneRadiance)
+    # img_hsv[:, :, 1] = global_stretching(img_hsv[:, :, 1], height, width)
+    # img_hsv[:, :, 2] = global_stretching(img_hsv[:, :, 2], height, width)
+    # img_rgb = hsv2rgb(img_hsv) * 255
 
-    return img_rgb
+    # return img_rgb
 
 from scipy import stats
 
@@ -270,8 +268,6 @@ def stretchrange(r_array, height, width):
 pi = math.pi
 e = math.e
 from scipy import stats
-
-
 
 def global_stretching(r_array, height, width, lamda, k):
 
@@ -418,17 +414,12 @@ def rghs(img):
        # cv2.imwrite(folder +'/midframe_output/' + prefix + '_RGHS.jpg', sceneRadiance)
         return sceneRadiance
 
-for img in new_train:
-   rghs(img)
-   plt.imshow(img)
+# for img in new_train:
+#    rghs(img)
+#    plt.imshow(img)
 
 #from PIL import Image, ImageEnhance
 #img=Image.fromarray(ret[1])
 #enhancer = ImageEnhance.Brightness(img)
 #factor=1.5
 #img_brightened = np.array(enhancer.enhance(factor))
-
-#cv2_imshow(img_brightened)
-
-cv2.waitKey(0)
-cv2.destroyAllWindows()

@@ -9,18 +9,17 @@ Original file is located at
 
 import cv2
 import os
-from google.colab.patches import cv2_imshow
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
-from google.colab import files
 
-!pip install roboflow
 
-from roboflow import Roboflow
-rf = Roboflow(api_key="wbs3ef01W1OQTdLhbY9o")
-project = rf.workspace("auv-hackathon").project("underwater-object-detection-s8xhb")
-dataset = project.version(1).download("coco")
+# !pip install roboflow
+
+# from roboflow import Roboflow
+# rf = Roboflow(api_key="wbs3ef01W1OQTdLhbY9o")
+# project = rf.workspace("auv-hackathon").project("underwater-object-detection-s8xhb")
+# dataset = project.version(1).download("coco")
 
 #This is the code to download the dataset
 
@@ -42,37 +41,37 @@ dataset = project.version(1).download("coco")
 #m=int(input('Enter no. of images'))
 #im_read(m)
 
-train_path = '/content/Underwater-object-detection-1/train/'
-test_path='/content/Underwater-object-detection-1/test/'
+# train_path = '/content/Underwater-object-detection-1/train/'
+# test_path='/content/Underwater-object-detection-1/test/'
 
-train_cont = os.listdir('/content/Underwater-object-detection-1/train/')
-test_cont=os.listdir('/content/Underwater-object-detection-1/test/')
-train_str=[]
-test_str=[]
+# train_cont = os.listdir('/content/Underwater-object-detection-1/train/')
+# test_cont=os.listdir('/content/Underwater-object-detection-1/test/')
+# train_str=[]
+# test_str=[]
 
-for item in train_cont:
-  if item != "_annotations.coco.json":
-    train_str.append(train_path+item)
+# for item in train_cont:
+#   if item != "_annotations.coco.json":
+#     train_str.append(train_path+item)
 
-for item in test_cont:
-  if item != "_annotations.coco.json":
-    test_str.append(test_path+item)
+# for item in test_cont:
+#   if item != "_annotations.coco.json":
+#     test_str.append(test_path+item)
 
-train_images=[]
-for item in train_str:
-   img = (cv2.imread(item,cv2.IMREAD_COLOR)).astype(np.uint8)
-   img=cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
-   train_images.append(img)
-   plt.imshow(img)
-   plt.show()
+# train_images=[]
+# for item in train_str:
+#    img = (cv2.imread(item,cv2.IMREAD_COLOR)).astype(np.uint8)
+#    img=cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+#    train_images.append(img)
+#    plt.imshow(img)
+#    plt.show()
 
-test_images=[]
-for item in test_str:
-   img = (cv2.imread(item,cv2.IMREAD_COLOR)).astype(np.uint8)
-   img=cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
-   test_images.append(img)
-   plt.imshow(img)
-   plt.show()
+# test_images=[]
+# for item in test_str:
+#    img = (cv2.imread(item,cv2.IMREAD_COLOR)).astype(np.uint8)
+#    img=cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+#    test_images.append(img)
+#    plt.imshow(img)
+#    plt.show()
 
 #Unsharp masking
  #Note that the first image has more contrast but the 2nd is sharper (as demonstrated by lab cvt later)
@@ -214,16 +213,16 @@ def  LABStretching(sceneRadiance):
 
     return img_rgb
 
-    sceneRadiance = np.clip(sceneRadiance, 0, 255)
-    sceneRadiance = np.uint8(sceneRadiance)
-    height = len(sceneRadiance)
-    width = len(sceneRadiance[0])
-    img_hsv = rgb2hsv(sceneRadiance)
-    img_hsv[:, :, 1] = global_stretching(img_hsv[:, :, 1], height, width)
-    img_hsv[:, :, 2] = global_stretching(img_hsv[:, :, 2], height, width)
-    img_rgb = hsv2rgb(img_hsv) * 255
+    # sceneRadiance = np.clip(sceneRadiance, 0, 255)
+    # sceneRadiance = np.uint8(sceneRadiance)
+    # height = len(sceneRadiance)
+    # width = len(sceneRadiance[0])
+    # img_hsv = rgb2hsv(sceneRadiance)
+    # img_hsv[:, :, 1] = global_stretching(img_hsv[:, :, 1], height, width)
+    # img_hsv[:, :, 2] = global_stretching(img_hsv[:, :, 2], height, width)
+    # img_rgb = hsv2rgb(img_hsv) * 255
 
-    return img_rgb
+    # return img_rgb
 
 from scipy import stats
 
