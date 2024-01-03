@@ -9,8 +9,10 @@ Submission for Deep Blue hackathon by team **Transformers**.
 
 * [Introduction](#Introduction)
 * [Pipeline](#Pipeline)
+* [Performance](#Performance)
 * [Installation](#Installation)
 * [Challenges](#Challenges)
+* [Conclusion](#Conclusion)
 
 
 ## Introduction 
