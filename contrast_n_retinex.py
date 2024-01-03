@@ -138,9 +138,9 @@ def ret(enh_img):
    retinex = np.clip(retinex * 255.0, 0, 255).astype(np.uint8)
    return(retinex)
 
-print(len(train_images))
-print(len(test_images))
-print(len(valid_images))
+# print(len(train_images))
+# print(len(test_images))
+# print(len(valid_images))
 
 new_train=[]
 

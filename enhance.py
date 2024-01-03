@@ -2,8 +2,9 @@ import cv2
 import matplotlib.pyplot as plt
 import numpy as np
 from RGHS.main import rghs
-from contrast+retinex import ret
-from contrast+retinex import col_enh
+from contrast_n_retinex import ret
+from contrast_n_retinex import col_enh
+
 #create image path
 def enhance_image(img):
     enh_img=col_enh(img)
