@@ -2,9 +2,13 @@ import cv2
 import matplotlib.pyplot as plt
 import numpy as np
 from RGHS.main import rghs
+from contrast+retinex import ret
+from contrast+retinex import col_enh
 #create image path
 def enhance_image(img):
-    rghs_img=rghs(img)
+    enh_img=col_enh(img)
+    ret_img=ret(enh_img)
+    rghs_img=rghs(ret_img)
     #make rgb from bgr
     img_bgr=cv2.cvtColor(rghs_img,cv2.COLOR_BGR2RGB)
     template=cv2.imread('/content/pool line.png')
