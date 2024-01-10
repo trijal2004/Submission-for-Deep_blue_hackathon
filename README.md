@@ -5,7 +5,7 @@ Submission for Deep Blue hackathon by team **Transformers**.
 
 
 
-## Table Of Content 
+## Table Of Contents
 
 * [Introduction](#Introduction)
 * [Pipeline](#Pipeline)
@@ -82,7 +82,7 @@ dataset = project.version(1).download("coco")
 
 
 # Specify the path to your COCO annotations JSON file
-coco_annotation_file = '/content/Underwater-object-detection-1/train/_annotations.coco.json'
+coco_annotation_file = 'Underwater-object-detection-1/train/_annotations.coco.json'
 
 # Create a COCO instance
 coco = COCO(coco_annotation_file)
